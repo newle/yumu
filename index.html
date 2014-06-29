@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>网页转码显示</title>
+	<style>
+		#container {
+			float:center;
+			text-align: center;
+			width: 720px;
+			margin:0 auto;
+		}
+		.query {
+			float:left;
+	        display: inline;
+	        width: 420px;
+	        height: 19px;
+	        margin: 0;
+	        padding: 6px 35px 5px 33px !important;
+	        background: #fff url(src/magnifier.gif) no-repeat 9px;
+		}
+		.searchbtn {
+			float:left;
+			width: 110px;
+			height: 32px;	
+	        padding: 6px 35px 5px 33px !important;
+			border: 0;
+			background: url(src/searchbtn.bmp) no-repeat;
+			color: #fff;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		.view {
+			clear: both;
+		}
+		.viewhtml {
+			float: left;
+			width: 50%;
+			height: 1024px;
+		}
+	</style>
+	<script language="javascript"  src="js/jquery.js"></script>
+</head>
+<body>
+	<div id="container">
+		<h1 id="bodytitle">网页转码显示</h1>
+		<form action="/search" method="get" class="search" id="searchForm">
+	        <input type="text" class="query" id="queryinput" name="query" value="输入想要转码的url" onFocus="if(value=='输入想要转码的url'){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;if(defaultValue=='输入想要转码的url'){this.style.color='#ddd'}} " style="color:#ddd" />
+	        <input type="button" name="searchBtn" id="submitButton" class="searchbtn" onClick="onSearch()" />
+	        <input type="hidden" name="f" value="" id="f" />
+	    </form>
+
+	</div>
+
+    <div id="view">
+    	<iframe class="viewhtml" src="html/a.html" />
+		<div class="viewhtml">
+		</div>
+    </div>
+	<script language="javascript">
+		$.ajax({
+			url: "xml/a.xml",
+			cache: "true",
+			success: function(xml) {
+				$(".viewhtml")[1].append(xml);
+			}
+		});
+	</script>
+</body>
+</html>
