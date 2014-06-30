@@ -31,13 +31,18 @@
 			font-size: 14px;
 			cursor: pointer;
 		}
-		.view {
+		#view {
 			clear: both;
 		}
 		.viewhtml {
 			float: left;
-			width: 50%;
+			width: 49%;
 			height: 1024px;
+		}
+		#viewxml {
+			float: left;
+			width: 49%;
+			background-color: #F7EED6;
 		}
 	</style>
 	<script language="javascript"  src="js/jquery.js"></script>
@@ -54,16 +59,18 @@
 	</div>
 
     <div id="view">
-    	<iframe class="viewhtml" src="html/a.html" />
-		<div class="viewhtml">
+    	<iframe class="viewhtml" src="html/a.html" ></iframe>
+		<div id="viewxml">
 		</div>
     </div>
 	<script language="javascript">
 		$.ajax({
-			url: "xml/a.xml",
+			url: "xml/a",
+			//url: "html/a.html",
 			cache: "true",
-			success: function(xml) {
-				$(".viewhtml")[1].append(xml);
+			success: function(html) {
+				$("#viewxml").append(html);
+				//$("#viewxml").html("");
 			}
 		});
 	</script>
